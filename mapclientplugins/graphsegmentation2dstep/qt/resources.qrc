@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="graphsegmentation2dstep">
+    <file>images/Action-edit-add-icon.png</file>
+    <file>images/red_cross.png</file>
+    <file>images/segmentation.png</file>
+  </qresource>
+</RCC>
