@@ -1,5 +1,5 @@
-{name}
-{underline}
+Graph Segmentation 2D
+=====================
 
-The {name} step is a plugin for the MAP Client application.
+The Graph Segmentation 2D step is a plugin for the MAP Client application.
 
