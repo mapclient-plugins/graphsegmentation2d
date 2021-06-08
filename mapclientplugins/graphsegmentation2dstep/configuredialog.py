@@ -1,6 +1,6 @@
 
 
-from PySide import QtCore, QtGui
+from PySide2 import QtGui, QtWidgets
 from mapclientplugins.graphsegmentation2dstep.ui_configuredialog import Ui_ConfigureDialog
 from mapclientplugins.graphsegmentation2dstep.xypairswidget import XYPairsWidget
 
@@ -8,13 +8,13 @@ INVALID_STYLE_SHEET = 'background-color: rgba(239, 0, 0, 50)'
 DEFAULT_STYLE_SHEET = ''
 
 
-class ConfigureDialog(QtGui.QDialog):
+class ConfigureDialog(QtWidgets.QDialog):
     """
     Configure dialog to present the user with the options to configure this step.
     """
 
     def __init__(self, parent=None):
-        QtGui.QDialog.__init__(self, parent)
+        QtWidgets.QDialog.__init__(self, parent)
 
         self._ui = Ui_ConfigureDialog()
         self._ui.setupUi(self)
@@ -65,14 +65,14 @@ class ConfigureDialog(QtGui.QDialog):
         Override the accept method so that we can confirm saving an
         invalid configuration.
         '''
-        result = QtGui.QMessageBox.Yes
+        result = QtWidgets.QMessageBox.Yes
         if not self.validate():
-            result = QtGui.QMessageBox.warning(self, 'Invalid Configuration',
+            result = QtWidgets.QMessageBox.warning(self, 'Invalid Configuration',
                 'This configuration is invalid.  Unpredictable behaviour may result if you choose \'Yes\', are you sure you want to save this configuration?)',
-                QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessageBox.No)
+                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No, QtWidgets.QMessageBox.No)
 
-        if result == QtGui.QMessageBox.Yes:
-            QtGui.QDialog.accept(self)
+        if result == QtWidgets.QMessageBox.Yes:
+            QtWidgets.QDialog.accept(self)
 
     def validate(self):
         '''
@@ -141,10 +141,10 @@ class ConfigureDialog(QtGui.QDialog):
 
 
 def _createDataRow(text, data, parent):
-    sizePolicyWidget = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Preferred)
+    sizePolicyWidget = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
     sizePolicyWidget.setHorizontalStretch(0)
     sizePolicyWidget.setVerticalStretch(0)
-    sizePolicyLabel = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
+    sizePolicyLabel = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
     sizePolicyLabel.setHorizontalStretch(0)
     sizePolicyLabel.setVerticalStretch(0)
 
@@ -153,18 +153,18 @@ def _createDataRow(text, data, parent):
     widget.setSizePolicy(sizePolicyWidget)
     widget.setData(data)
 
-    label = QtGui.QLineEdit(parent)
+    label = QtWidgets.QLineEdit(parent)
     sizePolicyLabel.setHeightForWidth(label.sizePolicy().hasHeightForWidth())
     label.setSizePolicy(sizePolicyLabel)
     label.setText(text)
 
-    pushButton = QtGui.QPushButton(parent)
+    pushButton = QtWidgets.QPushButton(parent)
     pushButton.setText("")
     icon = QtGui.QIcon()
     icon.addPixmap(QtGui.QPixmap(":/graphsegmentation2dstep/images/red_cross.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
     pushButton.setIcon(icon)
 
-    layout = QtGui.QHBoxLayout()
+    layout = QtWidgets.QHBoxLayout()
     layout.addWidget(label)
     layout.addWidget(widget)
     layout.addWidget(pushButton)
