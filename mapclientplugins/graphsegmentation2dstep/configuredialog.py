@@ -1,5 +1,3 @@
-
-
 from PySide2 import QtGui, QtWidgets
 from mapclientplugins.graphsegmentation2dstep.ui_configuredialog import Ui_ConfigureDialog
 from mapclientplugins.graphsegmentation2dstep.xypairswidget import XYPairsWidget
@@ -68,8 +66,9 @@ class ConfigureDialog(QtWidgets.QDialog):
         result = QtWidgets.QMessageBox.Yes
         if not self.validate():
             result = QtWidgets.QMessageBox.warning(self, 'Invalid Configuration',
-                'This configuration is invalid.  Unpredictable behaviour may result if you choose \'Yes\', are you sure you want to save this configuration?)',
-                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No, QtWidgets.QMessageBox.No)
+                                                   'This configuration is invalid.  Unpredictable behaviour may result if you choose \'Yes\', are you sure you want to save this configuration?)',
+                                                   QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+                                                   QtWidgets.QMessageBox.No)
 
         if result == QtWidgets.QMessageBox.Yes:
             QtWidgets.QDialog.accept(self)
@@ -135,7 +134,7 @@ class ConfigureDialog(QtWidgets.QDialog):
                 except ValueError as e:
                     pass
 
-        assert(None not in datas)
+        assert (None not in datas)
         for p in datas:
             self._addDataRow(p[0], p[1])
 
