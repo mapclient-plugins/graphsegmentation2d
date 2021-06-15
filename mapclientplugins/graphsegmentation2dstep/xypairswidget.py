@@ -1,9 +1,8 @@
-
-from PySide import QtGui
+from PySide2 import QtGui, QtWidgets
 from mapclientplugins.graphsegmentation2dstep.ui_xypairswidget import Ui_XYPairsWidget
 
 
-class XYPairsWidget(QtGui.QWidget):
+class XYPairsWidget(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super(XYPairsWidget, self).__init__(parent)
@@ -19,26 +18,26 @@ class XYPairsWidget(QtGui.QWidget):
 
     def _addClicked(self):
         index = self._ui.horizontalLayout.indexOf(self._ui.pushButtonAdd)
-        label_1 = QtGui.QLabel(self._ui.scrollAreaWidgetContents)
+        label_1 = QtWidgets.QLabel(self._ui.scrollAreaWidgetContents)
         label_1.setText("(")
         self._ui.horizontalLayout.insertWidget(index + 0, label_1)
-        doubleSpinBox_2 = QtGui.QDoubleSpinBox(self._ui.scrollAreaWidgetContents)
-        doubleSpinBox_2.setButtonSymbols(QtGui.QAbstractSpinBox.NoButtons)
+        doubleSpinBox_2 = QtWidgets.QDoubleSpinBox(self._ui.scrollAreaWidgetContents)
+        doubleSpinBox_2.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
         doubleSpinBox_2.setMinimum(-999999999.99)
         doubleSpinBox_2.setMaximum(999999999.99)
         self._ui.horizontalLayout.insertWidget(index + 1, doubleSpinBox_2)
-        label_3 = QtGui.QLabel(self._ui.scrollAreaWidgetContents)
+        label_3 = QtWidgets.QLabel(self._ui.scrollAreaWidgetContents)
         label_3.setText(",")
         self._ui.horizontalLayout.insertWidget(index + 2, label_3)
-        doubleSpinBox_4 = QtGui.QDoubleSpinBox(self._ui.scrollAreaWidgetContents)
-        doubleSpinBox_4.setButtonSymbols(QtGui.QAbstractSpinBox.NoButtons)
+        doubleSpinBox_4 = QtWidgets.QDoubleSpinBox(self._ui.scrollAreaWidgetContents)
+        doubleSpinBox_4.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
         doubleSpinBox_4.setMinimum(-999999999.99)
         doubleSpinBox_4.setMaximum(999999999.99)
         self._ui.horizontalLayout.insertWidget(index + 3, doubleSpinBox_4)
-        label_5 = QtGui.QLabel(self._ui.scrollAreaWidgetContents)
+        label_5 = QtWidgets.QLabel(self._ui.scrollAreaWidgetContents)
         label_5.setText(")")
         self._ui.horizontalLayout.insertWidget(index + 4, label_5)
-        label_6 = QtGui.QLabel(self._ui.scrollAreaWidgetContents)
+        label_6 = QtWidgets.QLabel(self._ui.scrollAreaWidgetContents)
         label_6.setText(",")
         self._ui.horizontalLayout.insertWidget(index + 5, label_6)
 
@@ -46,7 +45,7 @@ class XYPairsWidget(QtGui.QWidget):
         kids = self._ui.scrollAreaWidgetContents.children()
         spin_boxes = []
         for child in kids:
-            if type(child) == QtGui.QDoubleSpinBox:
+            if type(child) == QtWidgets.QDoubleSpinBox:
                 spin_boxes.append(child)
 
         return spin_boxes

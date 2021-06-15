@@ -1,11 +1,10 @@
-
 '''
 MAP Client Plugin Step
 '''
 import json
 from ast import literal_eval
 
-from PySide import QtGui
+from PySide2 import QtGui, QtWidgets
 
 from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
 from mapclientplugins.graphsegmentation2dstep.configuredialog import ConfigureDialog
@@ -19,16 +18,16 @@ class GraphSegmentation2DStep(WorkflowStepMountPoint):
 
     def __init__(self, location):
         super(GraphSegmentation2DStep, self).__init__('Graph Segmentation 2D', location)
-        self._configured = False # A step cannot be executed until it has been configured.
+        self._configured = False  # A step cannot be executed until it has been configured.
         self._category = 'Segmentation'
         # Add any other initialisation code here:
-        self._icon =  QtGui.QImage(':/graphsegmentation2dstep/images/segmentation.png')
+        self._icon = QtGui.QImage(':/graphsegmentation2dstep/images/segmentation.png')
         # Ports:
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#provides',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#plot_datasets'))
         # Port data:
-        self._portData0 = None # python#dict
+        self._portData0 = None  # python#dict
         # Config:
         self._config = {}
         self._config['identifier'] = ''
@@ -63,7 +62,7 @@ class GraphSegmentation2DStep(WorkflowStepMountPoint):
         The index is the index of the port in the port list.  If there is only one
         provides port for this step then the index can be ignored.
         '''
-        return self._portData0 # python#dict
+        return self._portData0  # python#dict
 
     def configure(self):
         '''
@@ -73,7 +72,7 @@ class GraphSegmentation2DStep(WorkflowStepMountPoint):
         then set:
             self._configured = True
         '''
-        dlg = ConfigureDialog(QtGui.QApplication.activeWindow().currentWidget())
+        dlg = ConfigureDialog(self._main_window)
         dlg.identifierOccursCount = self._identifierOccursCount
         dlg.setConfig(self._config)
         dlg.validate()
@@ -104,7 +103,6 @@ class GraphSegmentation2DStep(WorkflowStepMountPoint):
         '''
         return json.dumps(self._config, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
-
     def deserialize(self, string):
         '''
         Add code to deserialize this step from string.  This method should
@@ -132,4 +130,3 @@ def _extractDataSets(config):
             parameters[values[0]] = values[1]
 
     return parameters
-
