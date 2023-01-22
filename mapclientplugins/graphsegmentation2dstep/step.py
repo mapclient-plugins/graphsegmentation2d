@@ -2,9 +2,8 @@
 MAP Client Plugin Step
 '''
 import json
-from ast import literal_eval
 
-from PySide2 import QtGui, QtWidgets
+from PySide6 import QtGui
 
 from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
 from mapclientplugins.graphsegmentation2dstep.configuredialog import ConfigureDialog

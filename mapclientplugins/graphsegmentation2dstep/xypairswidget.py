@@ -1,4 +1,4 @@
-from PySide2 import QtGui, QtWidgets
+from PySide6 import QtGui, QtWidgets
 from mapclientplugins.graphsegmentation2dstep.ui_xypairswidget import Ui_XYPairsWidget
 
 
